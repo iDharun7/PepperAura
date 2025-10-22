@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PepperAura — Pepper‑Flavoured Luxury Candles</title>
+  <meta name="description" content="PepperAura hand-pours pepper‑flavoured luxury candles — premium soy wax, natural oils, and signature pepper accents for a warm, sensory experience." />
+  <meta name="keywords" content="pepper candle, pepper scented candle, luxury candle, PepperAura, soy wax candle, aromatic candle" />
+  <link rel="canonical" href="https://www.pepperaura.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PepperAura — Pepper‑Flavoured Luxury Candles" />
+  <meta property="og:description" content="Hand-poured pepper‑flavoured candles combining spice and warmth — crafted with soy wax and essential oils." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.pepperaura.com/" />
+  <meta property="og:image" content="https://picsum.photos/1200/630?random=201" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- A/B Testing Meta Tags -->
+  <meta name="experiment-name" content="HeroHeadlineTest" />
+  <meta name="experiment-variant" content="A" />
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "PepperAura",
+    "url": "https://www.pepperaura.com/",
+    "logo": "https://picsum.photos/400/120?random=220",
+    "description": "Pepper-flavoured luxury candles handcrafted with soy wax and natural oils.",
+    "sameAs": ["https://www.instagram.com/pepperaura","https://www.pinterest.com/pepperaura"]
+  }
+  </script>
+
+  <!-- Analytics placeholder (replace with real ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXX', { 'anonymize_ip': true });
+  </script>
+
+  <!-- Tailwind + custom colors -->
+  <script>
+    tailwind = { config: { theme: { extend: { colors: { 'pepper-red': '#ff4d6d', 'pepper-amber': '#ffb66b', 'pepper-green': '#00c2a8' }, fontFamily: { display: ['Inter','system-ui','sans-serif'] } } } } };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root{--bg:#ffffff;--muted:#6b7280;}
+    body{background:var(--bg); color:#0b1220; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;}
+    .accent{background:linear-gradient(90deg,#ff4d6d,#ffb66b);} /* pepper red -> amber */
+    .soft-shadow{box-shadow: 0 10px 30px rgba(11,18,32,0.06);} 
+    .card-border{border:1px solid rgba(11,18,32,0.04);} 
+    .cursor{position:fixed;top:0;left:0;width:24px;height:24px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform .12s ease, background .12s ease, width .12s ease,height .12s ease,opacity .12s ease;z-index:9999;background:rgba(0,0,0,0.05);} 
+    .cursor--hover{width:56px;height:56px;background:linear-gradient(90deg,#ff4d6d22,#ffb66b22);} 
+    @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important;} }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- custom cursor -->
+  <div id="cursor" class="cursor"></div>
+
+  <!-- progress -->
+  <div id="progress" class="fixed top-0 left-0 h-1 z-50" style="width:0;background:linear-gradient(90deg,#ff4d6d,#ffb66b);"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-100 z-40">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-3" aria-label="PepperAura home">
+        <div class="w-10 h-10 rounded-full accent flex items-center justify-center text-white font-bold" style="background:linear-gradient(90deg,#ff4d6d,#ffb66b)">PA</div>
+        <div class="hidden md:block">
+          <div class="text-sm font-semibold">PepperAura</div>
+          <div class="text-xs text-gray-500">Pepper‑flavoured luxury candles</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a class="nav-link text-gray-600 hover:text-pepper-red transition" href="#collection">Collection</a>
+        <a class="nav-link text-gray-600 hover:text-pepper-red transition" href="#experience">Experience</a>
+        <a class="nav-link text-gray-600 hover:text-pepper-red transition" href="#sustainability">Sustainability</a>
+        <a class="nav-link text-gray-600 hover:text-pepper-red transition" href="#contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#collection" class="inline-flex items-center gap-2 rounded-full px-4 py-2 accent text-white font-semibold soft-shadow">Shop</a>
+        <button id="mobileBtn" class="md:hidden p-2 rounded bg-white border card-border soft-shadow">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="pt-8">
+
+    <!-- HERO -->
+    <section id="hero" class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="text-sm font-medium uppercase text-pepper-amber">Hand-poured • Small batches</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Awaken your senses with PepperAura</h1>
+        <p class="text-gray-600 max-w-xl">Our pepper‑flavoured candles blend the warm spice of pepper with natural essential oils and soy wax — creating a candle experience that's bold, refined, and utterly memorable.</p>
+
+        <div class="flex items-center gap-4">
+          <a href="#collection" class="px-5 py-3 rounded-full text-white font-semibold" style="background:linear-gradient(90deg,#ff4d6d,#ffb66b);box-shadow:0 10px 30px rgba(255,77,109,0.08);">Shop Collection</a>
+          <a href="#experience" class="px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:shadow-sm transition">Discover the story</a>
+        </div>
+
+        <div class="mt-4 text-sm text-gray-500">Free shipping over ₹2,000 • Cruelty-free • 100% soy wax</div>
+      </div>
+
+      <div>
+        <div class="bg-white rounded-2xl soft-shadow overflow-hidden card-border">
+          <img src="https://static.vecteezy.com/system/resources/previews/027/031/480/non_2x/creative-burning-candle-on-a-wooden-background-ai-generative-free-photo.jpg" alt="Pepper candle glowing" class="w-full h-80 object-cover" />
+          <div class="p-6">
+            <div class="text-xs text-gray-500">Signature scent</div>
+            <div class="font-semibold text-lg">Black Pepper Bliss</div>
+            <p class="mt-2 text-gray-600 text-sm">A warm, spicy scent layered with bergamot and tobacco for evening calm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / BRAND STORY -->
+    <section id="about" class="py-20 border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-2xl font-bold">Where pepper meets serenity</h2>
+          <p class="mt-4 text-gray-600">PepperAura was born from a simple idea: spice can soothe. Our candles are hand-poured in small batches using natural soy wax, lead-free cotton wicks, and curated essential oil blends. Each scent is developed to balance the boldness of pepper with calming notes for a luxe sensory ritual.</p>
+
+          <div class="mt-6 grid grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-lg card-border soft-shadow text-center">
+              <div class="text-sm font-semibold">Pure Ingredients</div>
+              <div class="text-xs text-gray-500 mt-1">Soy wax & essential oils</div>
+            </div>
+            <div class="bg-white p-4 rounded-lg card-border soft-shadow text-center">
+              <div class="text-sm font-semibold">Sustainable</div>
+              <div class="text-xs text-gray-500 mt-1">Recyclable packaging</div>
+            </div>
+            <div class="bg-white p-4 rounded-lg card-border soft-shadow text-center">
+              <div class="text-sm font-semibold">Handcrafted</div>
+              <div class="text-xs text-gray-500 mt-1">Small-batch pours</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="https://just-candles.net/wp-content/uploads/2024/02/wax_types_and_burn_times.jpg" alt="Artisan pouring candle" class="w-full rounded-2xl soft-shadow object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTION -->
+    <section id="collection" class="py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold">The Collection</h2>
+          <div class="text-sm text-gray-500">Shop our curated pepper scents</div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Card: Black Pepper Bliss -->
+          <article class="bg-white rounded-2xl overflow-hidden card-border soft-shadow hover:translate-y-1 transition" tabindex="0">
+            <img src="https://img.freepik.com/premium-photo/candle-traditional-wax-tool-illumination-by-burning-flame_1061358-58474.jpg" alt="Black Pepper Bliss candle" class="w-full h-52 object-cover" />
+            <div class="p-5">
+              <div class="text-xs text-gray-500">Best seller</div>
+              <h3 class="font-semibold">Black Pepper Bliss</h3>
+              <p class="text-sm text-gray-600 mt-2">Bold black pepper warmed with bergamot, cedar, and amber — long burn, evening favourite.</p>
+              <div class="mt-4 flex items-center gap-3">
+                <a class="text-sm text-pepper-amber" href="#">View details</a>
+                <button class="ml-auto rounded-full px-4 py-2 bg-white border card-border soft-shadow">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card: Cedar & Pepper Calm -->
+          <article class="bg-white rounded-2xl overflow-hidden card-border soft-shadow hover:translate-y-1 transition" tabindex="0">
+            <img src="https://img.freepik.com/premium-photo/warm-glow-burning-candle-background_756535-5131.jpg" alt="Cedar & Pepper Calm" class="w-full h-52 object-cover" />
+            <div class="p-5">
+              <div class="text-xs text-gray-500">Woody</div>
+              <h3 class="font-semibold">Cedar & Pepper Calm</h3>
+              <p class="text-sm text-gray-600 mt-2">Smoky cedar balanced with a peppery top note — great for mornings and focus.</p>
+              <div class="mt-4 flex items-center gap-3">
+                <a class="text-sm text-pepper-amber" href="#">View details</a>
+                <button class="ml-auto rounded-full px-4 py-2 bg-white border card-border soft-shadow">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card: Vanilla Pepper Glow -->
+          <article class="bg-white rounded-2xl overflow-hidden card-border soft-shadow hover:translate-y-1 transition" tabindex="0">
+            <img src="https://img.freepik.com/premium-photo/burning-candle_1002726-1011.jpg" alt="Vanilla Pepper Glow" class="w-full h-52 object-cover" />
+            <div class="p-5">
+              <div class="text-xs text-gray-500">Sweet & spice</div>
+              <h3 class="font-semibold">Vanilla Pepper Glow</h3>
+              <p class="text-sm text-gray-600 mt-2">Creamy vanilla softened with cracked pepper and vanilla bean — cozy and sophisticated.</p>
+              <div class="mt-4 flex items-center gap-3">
+                <a class="text-sm text-pepper-amber" href="#">View details</a>
+                <button class="ml-auto rounded-full px-4 py-2 bg-white border card-border soft-shadow">Add to cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE (scroll-trigger) -->
+    <section id="experience" class="py-24 bg-gradient-to-b from-white to-transparent">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">Light. Inhale. Transform.</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Our scents are layered to evolve over time: top notes introduce the pepper, heart notes deepen with warm spices, and base notes linger with woody amber — a full sensory story in every burn.</p>
+
+        <div class="mt-12 grid md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl card-border soft-shadow">
+            <div class="text-sm font-semibold">Top Notes</div>
+            <p class="text-gray-600 text-sm mt-2">Cracked black pepper, bergamot.</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl card-border soft-shadow">
+            <div class="text-sm font-semibold">Heart Notes</div>
+            <p class="text-gray-600 text-sm mt-2">Cedar, tobacco, aromatic herbs.</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl card-border soft-shadow">
+            <div class="text-sm font-semibold">Base Notes</div>
+            <p class="text-gray-600 text-sm mt-2">Amber, vanilla, musk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUSTAINABILITY -->
+    <section id="sustainability" class="py-20 border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-2xl font-bold">Earth‑friendly glow</h2>
+          <p class="mt-4 text-gray-600">We use 100% soy wax, cotton wicks, and recyclable glass jars. Our packaging is FSC‑certified and printed with vegetable inks. Beauty should be kind to the planet.</p>
+
+          <ul class="mt-6 space-y-3 text-gray-600">
+            <li>• Soy wax for a clean burn</li>
+            <li>• Lead‑free cotton wicks</li>
+            <li>• Recyclable glass & paper packaging</li>
+          </ul>
+        </div>
+        <div>
+          <img src="https://www.dreamcustomboxes.com/wp-content/uploads/2024/05/eco-friendly-candle-packaging.webp" alt="Recyclable packaging" class="w-full rounded-2xl soft-shadow object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-20">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-2xl font-bold">Loved by scent connoisseurs</h2>
+        <div class="mt-8 grid gap-6">
+          <blockquote class="bg-white p-6 rounded-2xl card-border soft-shadow">“Black Pepper Bliss is unlike any candle I own — spicy, warm and so comforting. I light it every evening.” — <strong>Asha R.</strong></blockquote>
+          <blockquote class="bg-white p-6 rounded-2xl card-border soft-shadow">“The pepper note is refined — not overpowering. It fills the room beautifully.” — <strong>Marcus D.</strong></blockquote>
+          <blockquote class="bg-white p-6 rounded-2xl card-border soft-shadow">“Elegant scent and long burn time. Truly luxury.” — <strong>Leela S.</strong></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / NEWSLETTER -->
+    <section id="contact" class="py-20 border-t border-gray-100">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-2xl font-bold mb-4">Get in touch</h2>
+        <p class="text-gray-600 mb-6">Questions about scent profiles, wholesale, or custom orders? Send us a message and we'll respond within 2 business days.</p>
+
+        <form id="contactForm" class="grid md:grid-cols-2 gap-6 bg-white rounded-2xl card-border soft-shadow p-8">
+          <input required name="name" placeholder="Your name" aria-label="Your name" class="p-3 rounded-lg border border-gray-100" />
+          <input required name="email" type="email" placeholder="Email" aria-label="Email" class="p-3 rounded-lg border border-gray-100" />
+          <input name="subject" placeholder="Subject" class="p-3 rounded-lg border border-gray-100 md:col-span-2" />
+          <textarea required name="message" placeholder="Tell us about your inquiry" rows="5" class="p-3 rounded-lg border border-gray-100 md:col-span-2"></textarea>
+
+          <div class="md:col-span-2 flex items-center gap-4">
+            <button type="submit" class="px-5 py-3 rounded-full text-white font-semibold" style="background:linear-gradient(90deg,#ff4d6d,#ffb66b);">Send message</button>
+            <div class="text-sm text-gray-500">Or email <a href="mailto:hello@pepperaura.example" class="text-pepper-amber">hello@pepperaura.example</a></div>
+          </div>
+        </form>
+
+        <div class="mt-8 bg-white rounded-2xl card-border soft-shadow p-6">
+          <h3 class="font-semibold">Join the glow</h3>
+          <p class="text-sm text-gray-600 mt-2">Subscribe for scent drops, early access and exclusive offers.</p>
+          <form class="mt-4 flex gap-3">
+            <input placeholder="Email address" class="p-3 rounded-lg border border-gray-100 flex-1" />
+            <button class="px-4 py-3 rounded-full text-white" style="background:linear-gradient(90deg,#ff4d6d,#ffb66b);">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-600">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full" style="background:linear-gradient(90deg,#ff4d6d,#ffb66b); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">PA</div>
+          <div>
+            <div class="font-semibold text-gray-900">PepperAura</div>
+            <div class="text-xs text-gray-500">© 2025 PepperAura</div>
+          </div>
+        </div>
+        <div class="text-sm">Home • Collection • Sustainability • Contact</div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- robots.txt & sitemap.xml templates -->
+  <!-- robots.txt -->
+  <!--
+  User-agent: *
+  Allow: /
+  Sitemap: https://www.pepperaura.com/sitemap.xml
+  -->
+
+  <!-- sitemap.xml (save as /sitemap.xml) -->
+  <!--
+  <?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url><loc>https://www.pepperaura.com/</loc><priority>1.0</priority></url>
+    <url><loc>https://www.pepperaura.com/#collection</loc><priority>0.8</priority></url>
+    <url><loc>https://www.pepperaura.com/#experience</loc><priority>0.8</priority></url>
+    <url><loc>https://www.pepperaura.com/#sustainability</loc><priority>0.7</priority></url>
+    <url><loc>https://www.pepperaura.com/#contact</loc><priority>0.7</priority></url>
+  </urlset>
+  -->
+
+  <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    let mouse = {x: window.innerWidth/2, y: window.innerHeight/2};
+    let pos = {x: mouse.x, y: mouse.y};
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; cursor.style.opacity = 1; });
+    function render(){ pos.x += (mouse.x - pos.x) * 0.18; pos.y += (mouse.y - pos.y) * 0.18; cursor.style.transform = `translate(${pos.x}px, ${pos.y}px)`; requestAnimationFrame(render); }
+    render();
+    const actionable = 'a, button, input, textarea, .nav-link';
+    document.addEventListener('mouseover', e => { if (e.target.closest(actionable)) cursor.classList.add('cursor--hover'); });
+    document.addEventListener('mouseout', e => { if (!document.querySelector(':hover')) cursor.classList.remove('cursor--hover'); });
+
+    // GSAP reveals & progress
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('section').forEach((sec)=>{
+      gsap.from(sec, {opacity:0, y:24, duration:0.8, ease:'power3.out', scrollTrigger:{trigger:sec, start:'top 85%'}});
+    });
+    ScrollTrigger.create({ onUpdate: self => { document.getElementById('progress').style.width = (self.progress*100)+'%'; } });
+
+    // Smooth anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=> a.addEventListener('click', (e)=>{ const t=document.querySelector(a.getAttribute('href')); if(t){ e.preventDefault(); gsap.to(window, {scrollTo: t, duration:0.8, ease:'power2.out'}); } }));
+
+    // Mobile menu
+    document.getElementById('mobileBtn').addEventListener('click', ()=>{
+      const m = document.createElement('div'); m.className='fixed inset-0 bg-black/40 flex items-start p-6 z-50'; m.innerHTML=`<div class="bg-white rounded-xl w-full max-w-xs p-6"><button id=\"closeM\" class=\"mb-4\">Close</button><ul class=\"flex flex-col gap-3\"><li><a href=\"#collection\">Collection</a></li><li><a href=\"#experience\">Experience</a></li><li><a href=\"#sustainability\">Sustainability</a></li><li><a href=\"#contact\">Contact</a></li></ul></div>`; document.body.appendChild(m); document.getElementById('closeM').addEventListener('click', ()=> m.remove()); });
+
+    // Contact form demo
+    document.getElementById('contactForm').addEventListener('submit', e=>{ e.preventDefault(); const btn=e.target.querySelector('button[type="submit"]'); btn.disabled=true; btn.innerText='Sending...'; setTimeout(()=>{ btn.disabled=false; btn.innerText='Send message'; alert('Thanks — demo form submitted. Connect to your endpoint for production.'); e.target.reset(); },900); });
+  </script>
+</body>
+</html>
